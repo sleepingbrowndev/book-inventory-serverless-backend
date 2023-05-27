@@ -1,0 +1,42 @@
+service: book-inventory
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  architecture: arm64
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'ap-southeast-1'}
+  stackTags:
+    CreatedBy: shashenta.rao@ecloudvalley.com
+    Environment: ${sls:stage}
+    ProjectName: Book Inventory Backend
+  environment:
+    BOOK_INVENTORY_TABLE: ${self:service}-${sls:stage}-data-table
+    BOOK_INVENTORY_BUCKET: ${self:service}-${sls:stage}-bucket
+  # Add on more permissions as required
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action: 'dynamodb:*'
+          Resource: '*'
+        - Effect: 'Allow'
+          Action: 's3:*'
+          Resource: '*'
+
+functions:
+  - ${file(./resources/functions.yml)}
+
+resources:
+  - ${file(./resources/dynamodb.yml)}
+  - ${file(./resources/s3.yml)}
+
+plugins:
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
+  - serverless-plugin-resource-tagging
+
+package:
+  excludeDevDependencies: false

@@ -1,0 +1,135 @@
+listBooks:
+  handler: src/handlers/listBooks.lambdaHandler
+  timeout: 30
+  memorySize: 128
+  tags:
+    environment: ${sls:stage}
+    service: Book Inventory Backend
+  events:
+    - http:
+        path: books
+        method: GET
+        cors:
+          origins: '*'
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+
+postBook:
+  handler: src/handlers/postBook.lambdaHandler
+  timeout: 30
+  memorySize: 128
+  tags:
+    environment: ${sls:stage}
+    service: Book Inventory Backend
+  events:
+    - http:
+        path: books
+        method: POST
+        cors:
+          origins: '*'
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+
+editBook:
+  handler: src/handlers/editBook.lambdaHandler
+  timeout: 30
+  memorySize: 128
+  tags:
+    environment: ${sls:stage}
+    service: Book Inventory Backend
+  events:
+    - http:
+        path: books/{genre}/{bookId}
+        method: PATCH
+        cors:
+          origins: '*'
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+
+deleteBook:
+  handler: src/handlers/deleteBook.lambdaHandler
+  timeout: 30
+  memorySize: 128
+  tags:
+    environment: ${sls:stage}
+    service: Book Inventory Backend
+  events:
+    - http:
+        path: books/{genre}/{bookId}
+        method: DELETE
+        cors:
+          origins: '*'
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+
+getBookDetails:
+  handler: src/handlers/getBookDetails.lambdaHandler
+  timeout: 30
+  memorySize: 128
+  tags:
+    environment: ${sls:stage}
+    service: Book Inventory Backend
+  events:
+    - http:
+        path: books/{genre}/{bookId}
+        method: GET
+        cors:
+          origins: '*'
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+
+getBooksByGenre:
+  handler: src/handlers/getBooksByGenre.lambdaHandler
+  timeout: 30
+  memorySize: 128
+  tags:
+    environment: ${sls:stage}
+    service: Book Inventory Backend
+  events:
+    - http:
+        path: books/{genre}
+        method: GET
+        cors:
+          origins: '*'
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+
+jsonToS3:
+  handler: src/handlers/jsonToS3.lambdaHandler
+  events:
+    - s3:
+        bucket: ${self:provider.environment.BOOK_INVENTORY_BUCKET}
+        event: s3:ObjectCreated:*
+        rules:
+          - suffix: .json
+        existing: true

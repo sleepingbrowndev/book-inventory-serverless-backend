@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.341.0",
+    "@aws-sdk/client-s3": "^3.341.0",
+    "@aws-sdk/signature-v4-crt": "^3.341.0",
+    "@aws-sdk/util-dynamodb": "^3.341.0",
+    "aws-crt": "^1.15.17",
+    "bufferutil": "^4.0.7",
+    "dayjs": "^1.11.7",
+    "serverless": "^3.29.0",
+    "serverless-plugin-common-excludes": "^4.0.0",
+    "serverless-plugin-include-dependencies": "^5.0.0",
+    "serverless-plugin-resource-tagging": "^1.2.0",
+    "utf-8-validate": "^5.0.10",
+    "uuid": "^9.0.0"
+  }
+}

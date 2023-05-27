@@ -1,0 +1,24 @@
+Resources:
+  BookInventoryTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: book_genre
+          AttributeType: S
+        - AttributeName: book_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: book_genre
+          KeyType: HASH
+        - AttributeName: book_id
+          KeyType: RANGE
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      TableName: ${self:provider.environment.BOOK_INVENTORY_TABLE}
+      Tags:
+        - Key: environment
+          Value: ${sls:stage}
+        - Key: service
+          Value: Book Inventory Backend

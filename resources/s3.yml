@@ -1,0 +1,11 @@
+Resources:
+  BookInventoryBucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: ${self:provider.environment.BOOK_INVENTORY_BUCKET}
+      Tags:
+        - Key: environment
+          Value: ${sls:stage}
+        - Key: service
+          Value: Book Inventory Backend
