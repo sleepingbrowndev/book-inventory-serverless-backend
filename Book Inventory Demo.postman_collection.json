@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "0d8a17bc-bd58-4e20-ad54-5f6f8dffb2e8",
+		"name": "Book Inventory Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15310119"
+	},
+	"item": [
+		{
+			"name": "postBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_genre\": \"sports\",\n    \"book_title\": \"Formula 1: Race to Survive\",\n    \"book_author\": \"Lewis Hamilton\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/{{environment}}/books",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"{{environment}}",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/{{environment}}/books",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"{{environment}}",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBooksByGenre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/{{environment}}/books/fiction",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"{{environment}}",
+						"books",
+						"fiction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBookDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/{{environment}}/books/sports/4291d8ea-aea7-4425-88a3-82401e5d8f5b",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"{{environment}}",
+						"books",
+						"sports",
+						"4291d8ea-aea7-4425-88a3-82401e5d8f5b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editBook",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_title\": \"Formula 1: Race to Survive\",\n    \"book_author\": \"Sir Lewis Hamilton\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_endpoint}}/{{environment}}/books/sports/4291d8ea-aea7-4425-88a3-82401e5d8f5b",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"{{environment}}",
+						"books",
+						"sports",
+						"4291d8ea-aea7-4425-88a3-82401e5d8f5b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteBook",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_endpoint}}/{{environment}}/books/sports/4291d8ea-aea7-4425-88a3-82401e5d8f5b",
+					"host": [
+						"{{api_endpoint}}"
+					],
+					"path": [
+						"{{environment}}",
+						"books",
+						"sports",
+						"4291d8ea-aea7-4425-88a3-82401e5d8f5b"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_endpoint",
+			"value": "https://ths0sfjhik.execute-api.ap-southeast-1.amazonaws.com",
+			"type": "string"
+		},
+		{
+			"key": "environment",
+			"value": "dev",
+			"type": "string"
+		}
+	]
+}
